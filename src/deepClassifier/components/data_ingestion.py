@@ -1,6 +1,7 @@
 
 
 import os
+
 import urllib.request as request
 from zipfile import ZipFile
 from deepClassifier.entity.entity import DataIngestionConfig
@@ -17,17 +18,23 @@ class DataIngestion:
         self.config = config
 
     def download_file(self):
+        logger.info(f"download the file from the url")
+
         if not os.path.exists(self.config.local_data_file):
             filename, headers = request.urlretrieve(
                 url = self.config.source_URL,
                 filename = self.config.local_data_file
             )
+        logger.info(f"downloding complitted")
 
     def _get_updated_list_of_files(self, list_of_files):
+        logger.info(f"filter relevnat files")
         return [f for f in list_of_files if f.endswith(".jpg") and ("Cat" in f or "Dog" in f)]
+        
 
     def _preprocess(self, zf: ZipFile, f: str, working_dir: str):
         target_filepath = os.path.join(working_dir, f)
+        logger.info(f"unziping the file  transfer")
         if not os.path.exists(target_filepath):
             zf.extract(f, working_dir)
         
@@ -35,20 +42,12 @@ class DataIngestion:
             os.remove(target_filepath)
 
     def unzip_and_clean(self):
+        logger.info(f"unziping file")
         with ZipFile(file=self.config.local_data_file, mode="r") as zf:
             list_of_files = zf.namelist()
             updated_list_of_files = self._get_updated_list_of_files(list_of_files)
             for f in updated_list_of_files:
                 self._preprocess(zf, f, self.config.unzip_dir)
 
-    def initiate_data_ingestion(self):
-        try:
-            config = ConfigurationManager()
-            data_ingestion_config = config.get_data_ingestion_config()
-            data_ingestion = DataIngestion(config=data_ingestion_config)
-            data_ingestion.download_file()
-            data_ingestion.unzip_and_clean()
-        except Exception as e:
-            raise e
-         
+
   
