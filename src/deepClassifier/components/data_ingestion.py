@@ -1,9 +1,12 @@
 
 
 import os
-from deepClassifier.entiry import config_entity
+import urllib.request as request
+from zipfile import ZipFile
+from deepClassifier.entity.entity import DataIngestionConfig
+from deepClassifier.config.config import ConfigurationManager
 from configs import *
-from deepClassifier.config.ConfigurationManager import *
+from deepClassifier.config import config
 from deepClassifier.constants import *
 from deepClassifier.utils.common import read_yaml, create_directories
 
