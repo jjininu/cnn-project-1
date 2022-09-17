@@ -6,8 +6,8 @@ from zipfile import ZipFile
 from deepClassifier.entity.entity import DataIngestionConfig
 from deepClassifier.config.config import ConfigurationManager
 from configs import *
-from deepClassifier.config import config
-from deepClassifier.constants import *
+
+
 from deepClassifier.utils.common import read_yaml, create_directories
 
 
