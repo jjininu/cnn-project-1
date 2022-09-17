@@ -1,7 +1,7 @@
 
 
 from deepClassifier.entity.entity import DataIngestionConfig
-from deepClassifier.constants import CONFIG_FILE_PATH,PARAMS_FILE_PATH
+from deepClassifier.constants.constants import CONFIG_FILE_PATH,PARAMS_FILE_PATH
 from deepClassifier.utils.common import read_yaml, create_directories
 
 
