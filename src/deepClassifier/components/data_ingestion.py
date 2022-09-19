@@ -29,7 +29,7 @@ class DataIngestion:
                 url = self.config.source_URL,
                 filename = self.config.local_data_file
                 )
-                logger.info(f"downloding {filename}complitted with size of {get_size(filename)} and data inforation /n {headers}")
+                logger.info(f"downloding {filename}complitted with size of {get_size(filename)}")
         except Exception as e:
             logger.info(f"file already exist  of size {get_size(self.config.local_data_file)}")
             raise e
@@ -41,7 +41,7 @@ class DataIngestion:
 
     def _preprocess(self, zf: ZipFile, f: str, working_dir: str):
         target_filepath = os.path.join(working_dir, f)
-        logger.info(f"unziping the file  transfer")
+        
         if not os.path.exists(target_filepath):
             zf.extract(f, working_dir)
         
