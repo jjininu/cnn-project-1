@@ -1,5 +1,5 @@
 from pathlib import Path
-from deepClassifier.entity import PrepareBaseModelConfig
+from deepClassifier.entity.entity import PrepareBaseModelConfig
 import tensorflow as tf
 
 
@@ -10,7 +10,7 @@ class PrepareBaseModel:
 
     def get_base_model(self):
         self.model = tf.keras.applications.vgg16.VGG16(
-            input_shape=self.config.params_image_size,
+            input_shape=self.config.params_image_size ,
             weights=self.config.params_weights,
             include_top=self.config.params_include_top
         )
