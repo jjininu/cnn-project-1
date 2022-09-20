@@ -1,6 +1,6 @@
 
 
-from deepClassifier.entity.entity import DataIngestionConfig
+from deepClassifier.entity.entity import DataIngestionConfig, PrepareBaseModelConfig
 from deepClassifier.constants.constants import CONFIG_FILE_PATH,PARAMS_FILE_PATH
 from deepClassifier.utils.common import read_yaml, create_directories
 
@@ -28,3 +28,17 @@ class ConfigurationManager:
             )
 
         return data_ingestion_config
+    
+    def get_PrepareBaseModel_config(self) -> PrepareBaseModelConfig:
+        config = self.config.prepare_base_model
+        
+        create_directories([config.root_dir])
+
+        Prepare_BaseModel_Config = PrepareBaseModelConfig(
+
+            root_dir = config.root_dir,
+            base_model_path = config.base_model_path,
+            updated_base_model_path = config.updated_base_model_path
+        )
+
+        return Prepare_BaseModel_Config

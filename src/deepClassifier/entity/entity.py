@@ -11,3 +11,9 @@ class DataIngestionConfig:
     source_URL: str
     local_data_file:Path
     unzip_dir:Path
+
+@dataclass(frozen=True)
+class PrepareBaseModelConfig:
+    root_dir: str
+    base_model_path: Path
+    updated_base_model_path : Path

@@ -29,7 +29,7 @@ class DataIngestion:
                 url = self.config.source_URL,
                 filename = self.config.local_data_file
                 )
-                logger.info(f"downloding {filename}complitted with size of {get_size(filename)}")
+                logger.info(f"downloding {filename}complitted")
         except Exception as e:
             logger.info(f"file already exist  of size {get_size(self.config.local_data_file)}")
             raise e
